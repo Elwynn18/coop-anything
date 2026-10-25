@@ -12,7 +12,7 @@
 
 Two players can run one colony together: one hosts, the other joins and plays in the host's colony. Building,
 linking, trading, priorities, game speed and settings all go through the host. An automated suite with two copies
-of the game under Proton passes, including mutation twins. Only two players have been tested, and the game has no
+of the game under Proton passes 16/16, including mutation twins. Only two players have been tested, and the game has no
 player avatars, so "seeing the other player" means seeing their placement previews with their name.
 
 ## Existing work
@@ -74,21 +74,37 @@ check:
 | `ships` | landing ships, notifications and settings reach the other side |
 | `hazards` | meteors, sandstorms and placement previews show on both sides |
 | `twin-no-lifecycle` | fails: host-built module appears on the joiner |
-| `twin-no-commands` | fails: joiner-placed module built by the host |
+| `twin-no-commands` | fails: joiner-placed module built by the host and mirrored back |
 | `twin-no-char-states` | fails: colonists are where the host has them |
 | `twin-no-res-states` | fails: resources have the same holder and place |
-| `twin-no-census` | fails: census restores the resource |
+| `twin-no-census` | fails: census restores the resource the joiner lost |
 | `twin-no-build-states` | fails: construction state and progress match |
 | `twin-no-ship-states` | fails: landing ship position on the joiner |
 | `twin-no-notices` | fails: host notification shown on the joiner |
 | `twin-no-settings` | fails: host's landing permission change reaches the joiner |
 | `twin-no-edit-flush` | fails: joiner's landing permission change reaches the host |
-| `twin-no-error-guard` | fails: joiner error caught |
+| `twin-no-error-guard` | fails: joiner error caught and reported |
 
-Last suite run, 2026-10-25, mod 0.2.0:
+Last suite run, 2026-10-26, mod 0.2.0:
 
 ```
-SUITE_OUTPUT_PLACEHOLDER
+SUITE: 16/16 passed
+  PASS boot (19 s)
+  PASS join (59 s)
+  PASS refuse (72 s)
+  PASS twin-no-commands (90 s) twin caught: FAIL joiner-placed module built by the host and mirrored back (host side) (timeout after 25 s)
+  PASS twin-no-lifecycle (123 s) twin caught: FAIL host-built module appears on the joiner (Module: host 4 joiner 3)
+  PASS twin-no-res-states (66 s) twin caught: FAIL resources have the same holder and place (4 of 114 off, e.g. 119 host 0:-1:-1:1021.7:925.8 joiner 0:-1:-1:1017.7:922.8)
+  PASS twin-no-char-states (117 s) twin caught: FAIL colonists are where the host has them (within 5 m, one walked 8 m+) (4 of 9 off, 3 moved, worst 48.0 m)
+  PASS twin-no-census (77 s) twin caught: FAIL census restores the resource the joiner lost (id 119) (timeout after 20 s)
+  PASS twin-no-build-states (77 s) twin caught: FAIL construction state and progress match (2 of 5 off, e.g. 132 host ModuleTypeSolarPanel:1:1065.8:943.3:0.50 joiner ModuleTypeSolarPanel:1:1065.8:943.3:0.00)
+  PASS ships (90 s)
+  PASS twin-no-ship-states (111 s) twin caught: FAIL landing ship position on the joiner (timeout after 60 s)
+  PASS twin-no-notices (102 s) twin caught: FAIL host notification shown on the joiner (timeout after 10 s)
+  PASS twin-no-settings (99 s) twin caught: FAIL host's landing permission change reaches the joiner (timeout after 10 s)
+  PASS twin-no-edit-flush (100 s) twin caught: FAIL joiner's landing permission change reaches the host (timeout after 10 s)
+  PASS hazards (146 s)
+  PASS twin-no-error-guard (158 s) twin caught: FAIL joiner error caught and reported (received 0, fatal 'coop test: deliberate error to check the error guard')
 ```
 
 Limits: the suite runs on one PC over direct IP. Two people played together on two PCs with two Steam accounts,

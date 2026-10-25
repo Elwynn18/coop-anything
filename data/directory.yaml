@@ -7976,8 +7976,8 @@
   notes: BepInEx 5 (x86) plugin for Planetbase 1.4.2, host-authoritative mirror. The joiner loads the host's colony from
     a save built in memory, its simulation is frozen, and its actions are replayed on the host. Players have no avatar;
     other players' building and component previews show with their name. Steam invites or direct IP (TCP 47610).
-    Windows, or Linux through Proton. Two-copy automated suite under Proton with mutation twins; tested with two players
-    only. One-file installers for Windows (.bat) and Linux (.sh) install BepInEx and the mod with SHA-256 checks. MIT.
+    Windows, or Linux through Proton. Two-copy automated suite under Proton 16/16 with mutation twins (direct IP); owner
+    reports two-PC sessions joined through Steam invites. Tested with two players only. One-file installers for Windows (.bat) and Linux (.sh) install BepInEx and the mod with SHA-256 checks. MIT.
     Write-up in games/planetbase.
   sources:
   - https://github.com/Elwynn18/Planetbase-coop
