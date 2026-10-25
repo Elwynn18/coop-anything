@@ -68,6 +68,7 @@ check:
 
 | Case | Asserts |
 |---|---|
+| `boot` | one copy starts with BepInEx and the mod loaded |
 | `join` | the joiner loads the host's colony; buildings, colonists and resources match |
 | `refuse` | a joiner with a different mod version is refused |
 | `ships` | landing ships, notifications and settings reach the other side |
@@ -90,8 +91,9 @@ Last suite run, 2026-10-25, mod 0.2.0:
 SUITE_OUTPUT_PLACEHOLDER
 ```
 
-Limits: everything runs on one PC over direct IP. One human playtest by two people (version 0.1.0) found the bugs
-fixed in 0.2.0. Lightning, blizzards and solar flares share the meteor and sandstorm code but are not tested.
+Limits: the suite runs on one PC over direct IP. Two people played together on two PCs with two Steam accounts,
+joining by Steam invite (owner report, no test harness): the first session (0.1.0) found the bugs fixed in 0.2.0,
+and a later one used the one-file installer on the second player's PC. Lightning, blizzards and solar flares share the meteor and sandstorm code but are not tested.
 
 ## How to play
 
@@ -116,7 +118,7 @@ the main menu. Direct IP also works (TCP 47610; forward it on the host's router 
 - A joiner's action takes one round trip to the host.
 - Joiners don't see the anti-meteor laser's beam, only the meteor vanishing.
 - A building right at the edge of the allowed area near the colony ship can show as blocked for a joiner.
-- Not played over the internet yet; more than two players untested.
+- More than two players untested.
 
 ## Next steps
 
